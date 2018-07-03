@@ -1,17 +1,66 @@
 backend:
   name: git-gateway
   branch: master # Branch to update (optional; defaults to master)
-media_folder: "static/images/uploads" # Media files will be stored in the repo under static/images/uploads
+publish_mode: editorial_workflow
+media_folder: "static/images/uploads" # Media files will be stored in the repo under images/uploads
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with /images/uploads
 collections:
-  - name: "blog" # Used in routes, e.g., /admin/collections/blog
-    label: "Blog" # Used in the UI
-    folder: "content/blog/posts" # The path to the folder where the documents are stored
+  - name: "category" # Used in routes, e.g., /admin/collections/blog
+    label: "Category" # Used in the UI
+    folder: "content/category" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    format: 'json'
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "category/single.html"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "SEO Description", name: "description", widget: "text"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+  - name: "post" # Used in routes, e.g., /admin/collections/blog
+    label: "Post" # Used in the UI
+    folder: "content/post" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    fields: # The fields for each document, usually in front matter
+      - {label: "Layout", name: "layout", widget: "hidden", default: "single.html"}
+      - {label: "Category", name: "category", widget: "string"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "SEO Description", name: "description", widget: "text"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Body", name: "body", widget: "markdown"}
+      - label: "New Category"
+        name: "new-category"
+        widget: "relation"
+        collection: "category"
+        searchFields: ["name"]
+        valueField: "name"
+  - name: "pages"
+    label: "Pages"
+    files:
+    - label: "Home Page"
+      name: "home"
+      file: "content/_index.md"
+      fields:
+          - {label: Title, name: title, widget: string}
+          - {label: "SEO Description", name: "description", widget: "text"}
+          - {label: Intro, name: intro, widget: markdown}
+          - {label: "Featured Image", name: "thumbnail", widget: "image"}
+          - {label: "5 pillars blurb", name: "pillarsBlurb", widget: "text"}
+    - label: "Glossary Page"
+      name: "glossary"
+      file: "content/glossary.md"
+      fields:
+        - {label: "Layout", name: "layout", widget: "hidden", default: "glossary/single.html"}
+        - {label: "Type", name: "type", widget: "hidden", default: "glossary"}
+        - {label: "Title", name: "title", widget: "string"}
+        - {label: "SEO Description", name: "description", widget: markdown}
+        - label: "Letter section"
+          name: "letterSection"
+          widget: "list"
+          fields:
+            - {label: "Letter", name: "letter", widget: string}
+            - label: "Word" 
+              name: "word"
+              widget: "list"
+              fields: 
+                - {label: "Title", name: "title", widget: "string"}
+                - {label: "Description", name: "description", widget: "text"}
