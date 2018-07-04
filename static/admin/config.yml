@@ -10,6 +10,7 @@ collections:
     folder: "content/category" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    format: "json"
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "category/single.html"}
       - {label: "Title", name: "title", widget: "string"}
@@ -20,6 +21,7 @@ collections:
     folder: "content/post" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    format: "json"
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "single.html"}
       - {label: "Category", name: "category", widget: "string"}
