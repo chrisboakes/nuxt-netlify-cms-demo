@@ -14,6 +14,8 @@ export const mutations = {
 
 export const actions = {
     async getPostBySlug({commit}, slug) {
-        
+        let postData = await import('../content/post/' + slug + '.json');
+        commit('setCurrentPost', postData);
+        commit('setLoading', false);
     }
 }
