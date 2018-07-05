@@ -23,9 +23,3 @@ collections:
       - {label: "Category", name: "category", widget: "string"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}
-      - label: "New Category"
-        name: "new-category"
-        widget: "relation"
-        collection: "category"
-        searchFields: ["name"]
-        valueField: "name"
