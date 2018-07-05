@@ -13,7 +13,6 @@ collections:
     format: "json"
     fields: # The fields for each document, usually in front matter
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
   - name: "post" # Used in routes, e.g., /admin/collections/blog
     label: "Post" # Used in the UI
     folder: "content/post" # The path to the folder where the documents are stored
