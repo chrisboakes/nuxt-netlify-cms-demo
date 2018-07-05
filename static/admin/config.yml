@@ -12,9 +12,7 @@ collections:
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: "json"
     fields: # The fields for each document, usually in front matter
-      - {label: "Layout", name: "layout", widget: "hidden", default: "category/single.html"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "SEO Description", name: "description", widget: "text"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
   - name: "post" # Used in routes, e.g., /admin/collections/blog
     label: "Post" # Used in the UI
@@ -23,11 +21,8 @@ collections:
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: "json"
     fields: # The fields for each document, usually in front matter
-      - {label: "Layout", name: "layout", widget: "hidden", default: "single.html"}
       - {label: "Category", name: "category", widget: "string"}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "SEO Description", name: "description", widget: "text"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Body", name: "body", widget: "markdown"}
       - label: "New Category"
         name: "new-category"
@@ -35,34 +30,3 @@ collections:
         collection: "category"
         searchFields: ["name"]
         valueField: "name"
-  - name: "pages"
-    label: "Pages"
-    files:
-    - label: "Home Page"
-      name: "home"
-      file: "content/_index.md"
-      fields:
-          - {label: Title, name: title, widget: string}
-          - {label: "SEO Description", name: "description", widget: "text"}
-          - {label: Intro, name: intro, widget: markdown}
-          - {label: "Featured Image", name: "thumbnail", widget: "image"}
-          - {label: "5 pillars blurb", name: "pillarsBlurb", widget: "text"}
-    - label: "Glossary Page"
-      name: "glossary"
-      file: "content/glossary.md"
-      fields:
-        - {label: "Layout", name: "layout", widget: "hidden", default: "glossary/single.html"}
-        - {label: "Type", name: "type", widget: "hidden", default: "glossary"}
-        - {label: "Title", name: "title", widget: "string"}
-        - {label: "SEO Description", name: "description", widget: markdown}
-        - label: "Letter section"
-          name: "letterSection"
-          widget: "list"
-          fields:
-            - {label: "Letter", name: "letter", widget: string}
-            - label: "Word" 
-              name: "word"
-              widget: "list"
-              fields: 
-                - {label: "Title", name: "title", widget: "string"}
-                - {label: "Description", name: "description", widget: "text"}
