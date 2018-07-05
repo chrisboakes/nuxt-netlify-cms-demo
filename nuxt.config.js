@@ -1,3 +1,4 @@
+var requireContext = require('require-context');
 require('dotenv').config();
 
 module.exports = {
@@ -51,6 +52,18 @@ module.exports = {
             config.node = {
                 fs: 'empty'
             }
+        }
+    },
+    generate: {
+        routes: () => {
+            const context = requireContext('../../content/post', false, /\.json$/)
+            return context.keys().map(key => ({
+                payload: {
+                    ...context(key),
+                    slug: `${key.replace('.json', '').replace('./', '')}`
+                },
+                route: `${key.replace('.json', '').replace('./', '')}`
+            }));
         }
     }
 }

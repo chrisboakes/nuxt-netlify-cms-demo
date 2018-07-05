@@ -17,7 +17,8 @@
         "@nuxtjs/markdownit": "^1.2.1",
         "module": "^1.2.5",
         "netlify-cms": "^1.9.2",
-        "nuxt": "^1.0.0"
+        "nuxt": "^1.0.0",
+        "require-context": "^1.1.0"
     },
     "devDependencies": {
         "babel-eslint": "^8.2.1",

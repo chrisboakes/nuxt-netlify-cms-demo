@@ -16,7 +16,6 @@ export const actions = {
             ...context(key),
             slug: `${key.replace('.json', '').replace('./', '')}`
         }));
-        console.log(posts);
         commit('setPosts', posts);
     }
 }
